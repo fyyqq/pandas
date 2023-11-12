@@ -1,0 +1,64 @@
+import pandas
+
+index = row
+columns = column
+
+mydata = pandas.read_csv('csv_file') = show csv_file
+
+mydata.head(5) = get first 5 item
+
+mydata.tail(5) = get last 5 item
+
+mydata.to_csv('file_name.csv', index=False) = copy csv file
+
+mydata.to_excel('file_name.xlsx', index=False, sheet_name="") = copy to excel file
+
+pandas.read_excel('file_name.xlsx', sheet_name="") = show excel file
+
+pandas.read_html('url') = read file html file
+
+machine = create_engine('sqlite:///:memory:') = create mysql engine
+mydata.to_sql('file_name', con=machine) = create to sql file
+pandas.read_sql('file_name', con=machine)
+
+pandas.options.display.max_rows = 891 = set to display all item
+pandas.options.display.min_rows = 891 = set to display all item
+
+mydata.info() = show column data type
+
+mydata.describe() = calculate overall data
+
+mydata.column_name = get row by column
+mydata['column_name'] = get row by column
+mydata[['column_name']] = get row by column
+mydata[['column_name', 'column_name']] = get row by 2 column
+
+mydata['column_name'].equals(mydata['column_name']) = check is same
+
+mydata.iloc[:] = slicing
+myData.iloc[1:4, 2:4] = slicing rows & cols
+myData.iloc[[1, 2, 4], [2, 3, 4]] = slicing rows & cols
+
+myData.loc[1, 'column_name'] = get value by row & column
+myData.loc['S'] = get all value with 'S'
+myData.loc['S', ['name', 'age']] = get name, age with value with 'S'
+
+s = pandas.Series(key, value) = list to series
+s['key'] = get first value
+s[0] = get first value
+s.to_frame = show table series
+
+dataframe = pandas.Dataframe(data, index=[], column=[]) # create table
+dataframe['new_column_name'] = dataframe['column_name'] # create new column with exists column
+dataframe['column_name', axis=1] = delete column and row
+dataframe['column_name', axis=1, inplace=True] = delete column and row permanently
+dataframe['row_name', axis=0, inplace=True] = delete row permanently
+
+dataframe.shape = (row.length, column.length)
+
+dataframe['column_name'].dropna() = remove N/A
+dataframe['column_name'].fillna('new_value') = replace N/A 
+
+dataframe.age.values = get all value in column 
+
+sum(dataframe['column_name']) = sum all value in column
