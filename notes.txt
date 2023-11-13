@@ -26,7 +26,8 @@ pandas.options.display.min_rows = 891 = set to display all item
 
 mydata.info() = show column data type
 
-mydata.describe() = calculate overall data
+mydata.describe() = show math data
+mydata.transpose() = change view table (column to row / row to column)
 
 mydata.column_name = get row by column
 mydata['column_name'] = get row by column
@@ -48,11 +49,20 @@ s['key'] = get first value
 s[0] = get first value
 s.to_frame = show table series
 
-dataframe = pandas.Dataframe(data, index=[], column=[]) # create table
+dataframe = pandas.Dataframe(data, index=[], column=[]) # create table (dict dtype)
+dataframe = pandas.Dataframe({
+    'column_name': ['value', 'value', 'value']
+}, index=["key_name", "key_name", "key_name"])
+
 dataframe['new_column_name'] = dataframe['column_name'] # create new column with exists column
-dataframe['column_name', axis=1] = delete column and row
-dataframe['column_name', axis=1, inplace=True] = delete column and row permanently
-dataframe['row_name', axis=0, inplace=True] = delete row permanently
+
+dataframe.drop('column_name', axis=1) = delete column and row
+dataframe.drop('column_name', axis=1, inplace=True) = delete column and row permanently
+dataframe.drop('row_name', axis=0, inplace=True) = delete row permanently
+
+dataframe.count() = count value on column
+
+dataframe.groupby('column_name').count() = count value by column_name
 
 dataframe.shape = (row.length, column.length)
 
@@ -62,3 +72,14 @@ dataframe['column_name'].fillna('new_value') = replace N/A
 dataframe.age.values = get all value in column 
 
 sum(dataframe['column_name']) = sum all value in column
+
+pandas.concat([dataframe1, dataframe2, ...]) = concat dataframes (vertical = row)
+
+pandas.merge(dataframe1, dataframe2) = concat dataframe (horizontal = column)
+pandas.merge(dataframe1, dataframe2, how="left", on="['dataframe1, dataframe2]") = merging matching the left
+pandas.merge(dataframe1,dataframe2, how="right", on="[dataframe1, dataframe2]") = merging matching the right
+pandas.merge(dataframe1,dataframe2, how="outer", on="[dataframe1, dataframe2]") = merging both (insert both)
+pandas.merge(dataframe1,dataframe2, how="inner", on="[dataframe1, dataframe2]") = merging only matching row
+
+dataframe1.join(dataframe2) = join follow the index follow dataframe1
+dataframe1.join(dataframe2, how="inner") = join (only matching index)
