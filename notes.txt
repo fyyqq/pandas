@@ -45,41 +45,107 @@ myData.loc['S'] = get all value with 'S'
 myData.loc['S', ['name', 'age']] = get name, age with value with 'S'
 
 s = pandas.Series(key, value) = list to series
-s['key'] = get first value
+s[index]s = get first value
 s[0] = get first value
 s.to_frame = show table series
 
 dataframe = pandas.Dataframe(data, index=[], column=[]) # create table (dict dtype)
 dataframe = pandas.Dataframe({
-    'column_name': ['value', 'value', 'value']
+    'column_name': [value, value, value]
 }, index=["key_name", "key_name", "key_name"])
 
-dataframe['new_column_name'] = dataframe['column_name'] # create new column with exists column
+dataframe[new_column_name] = dataframe[column_name] # create new column with exists column
 
-dataframe.drop('column_name', axis=1) = delete column and row
-dataframe.drop('column_name', axis=1, inplace=True) = delete column and row permanently
+dataframe.drop(column_name, axis=1) = delete column and row
+dataframe.drop(column_name, axis=1, inplace=True) = delete column and row permanently
 dataframe.drop('row_name', axis=0, inplace=True) = delete row permanently
+
+dataframe[new_column_name] = value # create new column with same value
+
+dataframe[column_name].isnull() = set column value as NaN / Null
 
 dataframe.count() = count value on column
 
-dataframe.groupby('column_name').count() = count value by column_name
+dataframe.groupby(column_name).count() = count value by column_name
 
 dataframe.shape = (row.length, column.length)
 
-dataframe['column_name'].dropna() = remove N/A
-dataframe['column_name'].fillna('new_value') = replace N/A 
+dataframe.drop_duplicates(column_name) = remove duplicate value in column
+dataframe.drop_duplicates([column_name, column_name]) = remove duplicate value in 2 column
+
+dataframe[column_name].dropna() = remove N/A
+dataframe.dropna(subset=[column_name]) = remove N/A
+dataframe[column_name].fillna(new_value) = replace N/A 
+
+dataframe.set_index(column_name) = create new index from column name
+dataframe.reset_index() = reset index
 
 dataframe.age.values = get all value in column 
 
-sum(dataframe['column_name']) = sum all value in column
+sum(dataframe[column_name]) = sum all value in column
+
+pandas.DataFrame(data[column_name].head().str.slice(0, 3)) # get 3 letter of column value
 
 pandas.concat([dataframe1, dataframe2, ...]) = concat dataframes (vertical = row)
 
 pandas.merge(dataframe1, dataframe2) = concat dataframe (horizontal = column)
-pandas.merge(dataframe1, dataframe2, how="left", on="['dataframe1, dataframe2]") = merging matching the left
-pandas.merge(dataframe1,dataframe2, how="right", on="[dataframe1, dataframe2]") = merging matching the right
-pandas.merge(dataframe1,dataframe2, how="outer", on="[dataframe1, dataframe2]") = merging both (insert both)
-pandas.merge(dataframe1,dataframe2, how="inner", on="[dataframe1, dataframe2]") = merging only matching row
+pandas.merge(dataframe1, dataframe2, how="left", on="[column1, column2]") = merging matching the left
+pandas.merge(dataframe1, dataframe2, how="right", on="[column1, column2]") = merging matching the right
+pandas.merge(dataframe1, dataframe2, how="outer", on="[column1, column2]") = merging both (insert both)
+pandas.merge(dataframe1, dataframe2, how="inner", on="[column1, column2]") = merging only matching row
+pandas.merge(dataframe1, dataframe2, left_on="column1", right_on="column2") = merging follow same value in column
 
 dataframe1.join(dataframe2) = join follow the index follow dataframe1
 dataframe1.join(dataframe2, how="inner") = join (only matching index)
+
+===== CRUD =====
+
+# CREATE
+
+data = ["A", "B", "C", "D", "E"] = column value
+column = { "Letters": data } = column name
+index = numpy.arange(len(data)) = index
+pandas.DataFrame(column, index)
+
+# READ
+
+dataframe1[["column_name", "column_name"]] = show value in more columns
+dataframe1.loc[0] = get first data
+dataframe1.iloc[0] = get first data
+dataframe1.iloc[0:5] = slicing
+dataframe.head(5) = get first 5 data
+dataframe.tail(5) = get last 5 data
+dataframe[dataframe[column_name] == value] = get row with the same value
+dataframe[dataframe[column_name] > value] = get row with higher than 5
+pandas.dataframe["column_name"] = get all value in column
+
+# UPDATE
+
+dataframe.rename(columns={ "selected_column" : "new_column_name" }) = rename column name
+dataframe[index, column_name] = "new_value" = update 1 value in row
+dataframe["column_name"].replace(value, new_value) = update all related value
+
+# DELETE
+
+dataframe.drop(0) = delete first row
+dataframe.drop(["index", "index"]) = delete 2 row
+dataframe.drop(dataframe[dataframe["column_name"] == "find_value"].index) = delete more row
+dataframe.drop(columns="column_name") = delete column & value
+dataframe.drop(columns="{column_name, column_name}") = delete more column
+
+===== Filter =====
+
+dataframe[dataframe[column_name] > value] = find row higher than value
+dataframe.loc[:] = slicing row
+
+===== Sorting ===== 
+
+dataframe.sort_values("column_name", ascending=True) = sorting smaller to greater on column
+dataframe.sort_values("column_name", ascending=False) = sorting greater to smaller on column
+dataframe.iloc[::-1] = reverse dataset
+
+===== Grouping ===== 
+
+dataframe.groupby(column_name) = filtering difference value in column (for loop)
+
+===== Merging ===== 
