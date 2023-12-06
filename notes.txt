@@ -1,48 +1,56 @@
-import pandas
+import pandas = pandas 
 
 index = row
 columns = column
 
-mydata = pandas.read_csv('csv_file') = show csv_file
+dataframe = pandas.read_csv('csv_file') = show csv_file
 
-mydata.head(5) = get first 5 item
+dataframe.head(5) = get first 5 item
 
-mydata.tail(5) = get last 5 item
+dataframe.tail(5) = get last 5 item
 
-mydata.to_csv('file_name.csv', index=False) = copy csv file
+dataframe.to_csv('file_name.csv', index=False) = copy csv file
 
-mydata.to_excel('file_name.xlsx', index=False, sheet_name="") = copy to excel file
+dataframe.to_excel('file_name.xlsx', index=False, sheet_name="") = copy to excel file
 
 pandas.read_excel('file_name.xlsx', sheet_name="") = show excel file
 
 pandas.read_html('url') = read file html file
 
 machine = create_engine('sqlite:///:memory:') = create mysql engine
-mydata.to_sql('file_name', con=machine) = create to sql file
+dataframe.to_sql('file_name', con=machine) = create to sql file
 pandas.read_sql('file_name', con=machine)
 
 pandas.options.display.max_rows = 891 = set to display all item
 pandas.options.display.min_rows = 891 = set to display all item
 
-mydata.info() = show column data type
+dataframe.info() = show column data type
 
-mydata.describe() = show math data
-mydata.transpose() = change view table (column to row / row to column)
+dataframe.describe() = show math data
+dataframe.transpose() = change view table (column to row / row to column)
 
-mydata.column_name = get row by column
-mydata['column_name'] = get row by column
-mydata[['column_name']] = get row by column
-mydata[['column_name', 'column_name']] = get row by 2 column
+dataframe.column_name = get row by column
+dataframe['column_name'] = get row by column
+dataframe[['column_name']] = get row by column
+dataframe[['column_name', 'column_name']] = get row by 2 column
 
-mydata['column_name'].equals(mydata['column_name']) = check is same
+dataframe['column_name'].equals(dataframe['column_name']) = check is same
 
-mydata.iloc[:] = slicing
-myData.iloc[1:4, 2:4] = slicing rows & cols
-myData.iloc[[1, 2, 4], [2, 3, 4]] = slicing rows & cols
+dataframe[column_name].str[0:2] = slicing column value
 
-myData.loc[1, 'column_name'] = get value by row & column
-myData.loc['S'] = get all value with 'S'
-myData.loc['S', ['name', 'age']] = get name, age with value with 'S'
+dataframe[dataframe[column_name] (action)] = filtering column and get full row
+
+all_data[all_data.index == 356] = get full row on index
+
+dataframe.iloc[:] = slicing
+dataframe.iloc[1:4, 2:4] = slicing rows & cols
+dataframe.iloc[[1, 2, 4], [2, 3, 4]] = slicing rows & cols
+
+dataframe.loc[1, 'column_name'] = get value by row & column
+dataframe.loc['S'] = get all value with 'S'
+dataframe.loc['S', ['name', 'age']] = get name, age with value with 'S'
+
+dataframe.any(axis) = check if row / column have True
 
 s = pandas.Series(key, value) = list to series
 s[index]s = get first value
@@ -70,21 +78,29 @@ dataframe.groupby(column_name).count() = count value by column_name
 
 dataframe.shape = (row.length, column.length)
 
-dataframe.drop_duplicates(column_name) = remove duplicate value in column
-dataframe.drop_duplicates([column_name, column_name]) = remove duplicate value in 2 column
+dataframe.drop_duplicates(subset=[column_name, column_name]) = remove row on duplicate value in 2 column
 
 dataframe[column_name].dropna() = remove N/A
 dataframe.dropna(subset=[column_name]) = remove N/A
 dataframe[column_name].fillna(new_value) = replace N/A 
+dataframe.isna() = check each column value if NaN
+dataframe[dataframe.isna().any(axis=1)] = get null from column in dataframe
 
 dataframe.set_index(column_name) = create new index from column name
-dataframe.reset_index() = reset index
+dataframe.reset_index(drop=True) = reset index
+
+dataframe[column_name].apply(func) = function action into column / row value
+dataframe[column_name].transform(func) = function action into column / row value
 
 dataframe.age.values = get all value in column 
 
 sum(dataframe[column_name]) = sum all value in column
 
+dataframe[dataframe[column_name].duplicated(keep=False)] = Sort duplicated By column_name
+
 pandas.DataFrame(data[column_name].head().str.slice(0, 3)) # get 3 letter of column value
+
+dataframe[column_name].dt.hour/minute/second = get Hour / Minutes / Second in column
 
 pandas.concat([dataframe1, dataframe2, ...]) = concat dataframes (vertical = row)
 
@@ -128,6 +144,7 @@ dataframe["column_name"].replace(value, new_value) = update all related value
 # DELETE
 
 dataframe.drop(0) = delete first row
+dataframe.drop(index=row_number) = delete index
 dataframe.drop(["index", "index"]) = delete 2 row
 dataframe.drop(dataframe[dataframe["column_name"] == "find_value"].index) = delete more row
 dataframe.drop(columns="column_name") = delete column & value
