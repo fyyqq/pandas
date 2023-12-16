@@ -3,116 +3,128 @@ import pandas = pandas
 index = row
 columns = column
 
-dataframe = pandas.read_csv('csv_file') = show csv_file
+dataset = pandas.read_csv('csv_file') = show csv_file
 
-dataframe.head(5) = get first 5 item
+dataset.head(5) = get first 5 item
 
-dataframe.tail(5) = get last 5 item
+dataset.tail(5) = get last 5 item
 
-dataframe.to_csv('file_name.csv', index=False) = copy csv file
+dataset.to_csv('file_name.csv', index=False) = copy csv file
 
-dataframe.to_excel('file_name.xlsx', index=False, sheet_name="") = copy to excel file
+dataset.to_excel('file_name.xlsx', index=False, sheet_name="") = copy to excel file
 
 pandas.read_excel('file_name.xlsx', sheet_name="") = show excel file
 
 pandas.read_html('url') = read file html file
 
 machine = create_engine('sqlite:///:memory:') = create mysql engine
-dataframe.to_sql('file_name', con=machine) = create to sql file
+dataset.to_sql('file_name', con=machine) = create to sql file
 pandas.read_sql('file_name', con=machine)
 
 pandas.options.display.max_rows = 891 = set to display all item
 pandas.options.display.min_rows = 891 = set to display all item
+pandas.set_option('display.min_rows', None) = show all rows
 
-dataframe.info() = show column data type
+dataset.info() = show column data type
 
-dataframe.describe() = show math data
-dataframe.transpose() = change view table (column to row / row to column)
+dataset.describe() = show math data
+dataset.transpose() = change view table (column to row / row to column)
 
-dataframe.column_name = get row by column
-dataframe['column_name'] = get row by column
-dataframe[['column_name']] = get row by column
-dataframe[['column_name', 'column_name']] = get row by 2 column
+dataset.column_name = get row by column
+dataset['column_name'] = get row by column
+dataset[['column_name']] = get row by column
+dataset[['column_name', 'column_name']] = get row by 2 column
 
-dataframe['column_name'].equals(dataframe['column_name']) = check is same
+dataset['column_name'].equals(dataset['column_name']) = check is same
 
-dataframe[column_name].str[0:2] = slicing column value
+dataset[column_name].str[0:2] = slicing column value
 
-dataframe[dataframe[column_name] (action)] = filtering column and get full row
+dataset[dataset[column_name] (action)] = filtering column and get full row
 
 all_data[all_data.index == 356] = get full row on index
 
-dataframe.iloc[:] = slicing
-dataframe.iloc[1:4, 2:4] = slicing rows & cols
-dataframe.iloc[[1, 2, 4], [2, 3, 4]] = slicing rows & cols
+dataset.iloc[:] = slicing
+dataset.iloc[1:4, 2:4] = slicing rows & cols
+dataset.iloc[[1, 2, 4], [2, 3, 4]] = slicing rows & cols
 
-dataframe.loc[1, 'column_name'] = get value by row & column
-dataframe.loc['S'] = get all value with 'S'
-dataframe.loc['S', ['name', 'age']] = get name, age with value with 'S'
+dataset.loc[1, 'column_name'] = get value by row & column
+dataset.loc['S'] = get all value with 'S'
+dataset.loc['S', ['name', 'age']] = get name, age with value with 'S'
 
-dataframe.any(axis) = check if row / column have True
+dataset.any(axis) = check if row / column have True
 
 s = pandas.Series(key, value) = list to series
 s[index]s = get first value
 s[0] = get first value
 s.to_frame = show table series
 
-dataframe = pandas.Dataframe(data, index=[], column=[]) # create table (dict dtype)
-dataframe = pandas.Dataframe({
+dataset = pandas.dataset(data, index=[], column=[]) # create table (dict dtype)
+dataset = pandas.dataset({
     'column_name': [value, value, value]
 }, index=["key_name", "key_name", "key_name"])
 
-dataframe[new_column_name] = dataframe[column_name] # create new column with exists column
+dataset[new_column_name] = dataset[column_name] # create new column with exists column
 
-dataframe.drop(column_name, axis=1) = delete column and row
-dataframe.drop(column_name, axis=1, inplace=True) = delete column and row permanently
-dataframe.drop('row_name', axis=0, inplace=True) = delete row permanently
+dataset.drop(column_name, axis=1) = delete column and row
+dataset.drop(column_name, axis=1, inplace=True) = delete column and row permanently
+dataset.drop('row_name', axis=0, inplace=True) = delete row permanently
 
-dataframe[new_column_name] = value # create new column with same value
+dataset[new_column_name] = value # create new column with same value
 
-dataframe[column_name].isnull() = set column value as NaN / Null
+dataset[column_name].isnull() = set column value as NaN / Null
+dataset[dataset[column_name].notnull()] = find value that not null
+dataset.dropna(subset=[column_name], axis=0) = drop column that null 
 
-dataframe.count() = count value on column
+dataset.count() = count value on column
 
-dataframe.groupby(column_name).count() = count value by column_name
+dataset.groupby(column_name).count() = count value by column_name
 
-dataframe.shape = (row.length, column.length)
+dataset.shape = (row.length, column.length)
 
-dataframe.drop_duplicates(subset=[column_name, column_name]) = remove row on duplicate value in 2 column
+dataset.drop_duplicates(subset=[column_name, column_name]) = remove row on duplicate value in 2 column
 
-dataframe[column_name].dropna() = remove N/A
-dataframe.dropna(subset=[column_name]) = remove N/A
-dataframe[column_name].fillna(new_value) = replace N/A 
-dataframe.isna() = check each column value if NaN
-dataframe[dataframe.isna().any(axis=1)] = get null from column in dataframe
+dataset[column_name].dropna() = remove N/A
+dataset.dropna(subset=[column_name]) = remove N/A
+dataset[column_name].fillna(new_value) = replace N/A 
+dataset.isna() = check each column value if NaN
+dataset[dataset.isna().any(axis=1)] = get null from column in dataset
 
-dataframe.set_index(column_name) = create new index from column name
-dataframe.reset_index(drop=True) = reset index
+dataset.set_index(column_name) = create new index from column name
+dataset.reset_index(drop=True) = reset index
 
-dataframe[column_name].apply(func) = function action into column / row value
-dataframe[column_name].transform(func) = function action into column / row value
+dataset[column_name].apply(func) = function action into column / row value
+dataset[column_name].transform(func) = function action into column / row value
 
-dataframe.age.values = get all value in column 
+dataset[~dataset[column_name] > 50] = contrast below than 50
 
-sum(dataframe[column_name]) = sum all value in column
+dataset[column_name].value_counts() = count duplicated value length 
 
-dataframe[dataframe[column_name].duplicated(keep=False)] = Sort duplicated By column_name
+dataset.age.values = get all value in column 
 
-pandas.DataFrame(data[column_name].head().str.slice(0, 3)) # get 3 letter of column value
+sum(dataset[column_name]) = sum all value in column
 
-dataframe[column_name].dt.hour/minute/second = get Hour / Minutes / Second in column
+dataset[dataset[column_name].duplicated(keep=False)] = Sort duplicated By column_name
 
-pandas.concat([dataframe1, dataframe2, ...]) = concat dataframes (vertical = row)
+pandas.dataset(data[column_name].head().str.slice(0, 3)) # get 3 letter of column value
 
-pandas.merge(dataframe1, dataframe2) = concat dataframe (horizontal = column)
-pandas.merge(dataframe1, dataframe2, how="left", on="[column1, column2]") = merging matching the left
-pandas.merge(dataframe1, dataframe2, how="right", on="[column1, column2]") = merging matching the right
-pandas.merge(dataframe1, dataframe2, how="outer", on="[column1, column2]") = merging both (insert both)
-pandas.merge(dataframe1, dataframe2, how="inner", on="[column1, column2]") = merging only matching row
-pandas.merge(dataframe1, dataframe2, left_on="column1", right_on="column2") = merging follow same value in column
+dataset[column_name].dt.hour/minute/second = get Hour / Minutes / Second in column
 
-dataframe1.join(dataframe2) = join follow the index follow dataframe1
-dataframe1.join(dataframe2, how="inner") = join (only matching index)
+dataset.query("column_name > 5") = filter value in column
+dataset[dataset[column_name.isin([value in column])]] = find value in column
+
+pandas.concat([dataset1, dataset2, ...], axis=0) = concat datasets (row)
+pandas.concat([dataset1, dataset2, ...], axis=1) = concat datasets (column)
+pandas.concat([dataset1, dataset2, ...], axis=1, join="inner") = inner = remove Nan Row take Notnull row
+
+pandas.merge(dataset1, dataset2) = merging 2 column and value same to 1 column
+pandas.merge(dataset1, dataset2, how="left", on="[column1, column2]") = merging matching the left
+pandas.merge(dataset1, dataset2, how="right", on="[column1, column2]") = merging matching the right
+pandas.merge(dataset1, dataset2, how="outer", on="[column1, column2]") = merging both (insert both)
+pandas.merge(dataset1, dataset2, how="inner", on="[column1, column2]") = merging only matching row
+pandas.merge(dataset1, dataset2, left_on="column1", right_on="column2") = merging follow same value in column
+
+dataset1.join(dataset2) = join follow the index follow dataset1
+dataset1.join(dataset2, how="inner") = join (only matching index)
 
 ===== CRUD =====
 
@@ -121,48 +133,48 @@ dataframe1.join(dataframe2, how="inner") = join (only matching index)
 data = ["A", "B", "C", "D", "E"] = column value
 column = { "Letters": data } = column name
 index = numpy.arange(len(data)) = index
-pandas.DataFrame(column, index)
+pandas.dataset(column, index)
 
 # READ
 
-dataframe1[["column_name", "column_name"]] = show value in more columns
-dataframe1.loc[0] = get first data
-dataframe1.iloc[0] = get first data
-dataframe1.iloc[0:5] = slicing
-dataframe.head(5) = get first 5 data
-dataframe.tail(5) = get last 5 data
-dataframe[dataframe[column_name] == value] = get row with the same value
-dataframe[dataframe[column_name] > value] = get row with higher than 5
-pandas.dataframe["column_name"] = get all value in column
+dataset1[["column_name", "column_name"]] = show value in more columns
+dataset1.loc[0] = get first data
+dataset1.iloc[0] = get first data
+dataset1.iloc[0:5] = slicing
+dataset.head(5) = get first 5 data
+dataset.tail(5) = get last 5 data
+dataset[dataset[column_name] == value] = get row with the same value
+dataset[dataset[column_name] > value] = get row with higher than 5
+pandas.dataset["column_name"] = get all value in column
 
 # UPDATE
 
-dataframe.rename(columns={ "selected_column" : "new_column_name" }) = rename column name
-dataframe[index, column_name] = "new_value" = update 1 value in row
-dataframe["column_name"].replace(value, new_value) = update all related value
+dataset.rename(columns={ "selected_column" : "new_column_name" }) = rename column name
+dataset[index, column_name] = "new_value" = update 1 value in row
+dataset["column_name"].replace(value, new_value) = update all related value
 
 # DELETE
 
-dataframe.drop(0) = delete first row
-dataframe.drop(index=row_number) = delete index
-dataframe.drop(["index", "index"]) = delete 2 row
-dataframe.drop(dataframe[dataframe["column_name"] == "find_value"].index) = delete more row
-dataframe.drop(columns="column_name") = delete column & value
-dataframe.drop(columns="{column_name, column_name}") = delete more column
+dataset.drop(0) = delete first row
+dataset.drop(index=row_number) = delete index
+dataset.drop(["index", "index"]) = delete 2 row
+dataset.drop(dataset[dataset["column_name"] == "find_value"].index) = delete more row
+dataset.drop(columns="column_name") = delete column & value
+dataset.drop(columns="{column_name, column_name}") = delete more column
 
 ===== Filter =====
 
-dataframe[dataframe[column_name] > value] = find row higher than value
-dataframe.loc[:] = slicing row
+dataset[dataset[column_name] > value] = find row higher than value
+dataset.loc[:] = slicing row
 
 ===== Sorting ===== 
 
-dataframe.sort_values("column_name", ascending=True) = sorting smaller to greater on column
-dataframe.sort_values("column_name", ascending=False) = sorting greater to smaller on column
-dataframe.iloc[::-1] = reverse dataset
+dataset.sort_values("column_name", ascending=True) = sorting smaller to greater on column
+dataset.sort_values("column_name", ascending=False) = sorting greater to smaller on column
+dataset.iloc[::-1] = reverse dataset
 
 ===== Grouping ===== 
 
-dataframe.groupby(column_name) = filtering difference value in column (for loop)
+dataset.groupby(column_name) = filtering difference value in column (for loop)
 
 ===== Merging ===== 
